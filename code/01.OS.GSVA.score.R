@@ -1,6 +1,5 @@
 options(stringsAsFactors = F, encoding = "UTF-8")
 
-
 #################
 # package
 #################
