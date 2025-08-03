@@ -1,5 +1,9 @@
 # OxStressNet: A Neural Network-Based Method for Quantitative Estimation of Oxidative Stress Levels
 OxStressNet is a computational framework designed to quantitatively estimate oxidative stress activation across diverse biological contexts using transcriptomic data.
+<p align="center">
+  <img src="images/Figure.png" alt="OxStressNet Framework" width="600">
+</p>
+
 # 1. Overview
 This repository contains the source code for the paper "OxStressNet: A Neural Network-Based Method for Quantitative Estimation of Oxidative Stress Levels." The directory is organized as follows:
 
