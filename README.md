@@ -24,3 +24,6 @@ This repository contains the source code for the paper "OxStressNet: A Neural Ne
 - torch == 2.6.0
 - scikit-learn == 1.6.1
 - pandas == 2.2.3
+
+# 3. Contacts
+If you have any questions, please email Jun Xiao (xiaojun20@mails.jlu.edu.cn)
