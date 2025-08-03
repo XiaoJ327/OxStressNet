@@ -15,9 +15,10 @@ from scipy.stats import gaussian_kde
 
 from sklearn.preprocessing import StandardScaler
 
+
 ## set workspace
 
-mydir = "/demo/"
+mydir = "../demo_result/"
 
 if not os.path.exists(mydir):
     os.makedirs(mydir)
@@ -27,6 +28,8 @@ os.chdir(mydir)
 #####################
 # Parameter Setup
 #####################
+
+## If the model fails to converge, please consider tuning the following parameters
 
 ## Number of epochs
 epochs = 50
@@ -41,12 +44,15 @@ train_batch_size = 100
 ## Size of the validation set
 test_size = 0.2
 
+## learning rate
+learning_rate = 0.0001
+
 ####################
 # Reading expression profile
 #####################
 
 # Example usage
-file_path = ''  # Replace with your file path
+file_path = '../demo_data/exp.csv.gz'  # Replace with your file path
 
 expression_profile_df = pd.read_csv(file_path, index_col=0)
 expression_profile_df = expression_profile_df.T
@@ -66,15 +72,15 @@ expression_profile_df = pd.DataFrame(scaler.fit_transform(expression_profile_df)
                                       index=expression_profile_df.index, 
                                       columns=expression_profile_df.columns)
 
-
 #######################
 # Reading GSVA score
 #######################
 
-file_path = '01.oxidative.stress.score.csv'
+file_path = '../demo_result/01.oxidative.stress.score.csv'
 
 oxidative_stress_score_df = pd.read_csv(file_path, index_col=0)
 oxidative_stress_score_df = oxidative_stress_score_df.T
+
 
 ####################
 # Convert data to tensor format
@@ -106,6 +112,7 @@ train_loader = DataLoader(train_dataset, batch_size = train_batch_size, shuffle=
 
 test_dataset = TensorDataset(X_test, OS_test)
 test_loader = DataLoader(test_dataset, batch_size = X_test.shape[0], shuffle=False)        
+
 
 ###################
 # Define Neural Network
@@ -230,7 +237,7 @@ model = model.to('cuda')
 criterion = CustomLoss()
 
 # Define optimizer
-optimizer = optim.Adam(model.parameters(), lr=0.0001, weight_decay=1e-4)
+optimizer = optim.Adam(model.parameters(), lr = learning_rate, weight_decay=1e-4)
 
 
 ###############
@@ -280,7 +287,6 @@ for epoch in range(epochs):
         
         df.to_csv(mydir + '/01.train.loss.csv', index=False)
 
-
 #################
 # Plot training loss
 #################
@@ -294,6 +300,7 @@ plt.xlabel("Iteration")                                                     ## S
 plt.savefig(mydir + '/01.train.loss.pdf', format='pdf')                     ## Save as a PDF file
 plt.show()                                                                  ## Never use show() before plt.savefig. The figure will not be displayed in savefig after saving
 plt.close()  # Close the canvas to prevent redundant plotting
+
 
 ##########################
 # Evaluation loop (for test set)
@@ -412,5 +419,3 @@ cols_to_normalize = ["o_score", "r_score", "os_score"]
 df[cols_to_normalize] = df[cols_to_normalize].apply(lambda x: (x - x.min()) / (x.max() - x.min()))
 
 df.to_csv(mydir + '/05.os.score.scale.csv', index=False)
-
-
