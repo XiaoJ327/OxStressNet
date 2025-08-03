@@ -25,5 +25,12 @@ This repository contains the source code for the paper "OxStressNet: A Neural Ne
 - scikit-learn == 1.6.1
 - pandas == 2.2.3
 
-# 3. Contacts
+# 3. Quick Start
+
+1. Run GSVA scoring in R:
+   source("code/01.OS.GSVA.score.R")
+2. Run the neural network model:
+   python code/02.neural.network.py
+
+# 4. Contacts
 If you have any questions, please email Jun Xiao (xiaojun20@mails.jlu.edu.cn)
