@@ -6,10 +6,7 @@ options(stringsAsFactors = F, encoding = "UTF-8")
 
 suppressMessages({
     
-    library(clusterProfiler)            ## enrichment analysis
-    
     library(GSVA)                        ## GSVA
-    library(openxlsx)                    ## openxlsx
     
     })
 
@@ -17,23 +14,22 @@ suppressMessages({
 # Output dir
 ##################
 
-mydir <- "Demo"
+mydir <- "../demo_result"
 dir.create(mydir, recursive = T)
-
 
 ##################
 # load expression profile
 ##################
 
-load("01.tpm.exp.rdata")
+exp <- read.csv("../demo_data/exp.csv.gz", header = T, row.names = 1, check.names = F)
 
 ##################################
 # OS geneset
 #################################
 
-O.genes <- read.xlsx("O.xlsx")
-R.genes <- read.xlsx("R.xlsx")
-OS.genes <- read.xlsx("OS.xlsx")
+O.genes <- read.csv("../demo_data/O.csv", header = T)
+R.genes <- read.csv("../demo_data/R.csv", header = T)
+OS.genes <- read.csv("../demo_data/OS.csv", header = T)
 
 pathwaysList.all <- list()
 
@@ -49,6 +45,7 @@ pathwaysList.all[["OS.score"]] <- unique(OS.genes$symbol)
 exp <- log2(exp + 1)
 exp <- as.matrix(exp)
 
+
 ####################
 # calculating the gsva score
 ####################
@@ -57,7 +54,3 @@ gsvapar <- gsvaParam(exp, pathwaysList.all, kcdf = "Gaussian") #"Gaussian" for l
 gsva_score <- gsva(gsvapar, verbose=T) 
 
 write.csv(gsva_score, file = paste0(mydir, "/01.oxidative.stress.score.csv"), row.names=T, quote=F)
-
-
-
-  
