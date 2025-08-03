@@ -16,3 +16,11 @@ This repository contains the source code for the paper "OxStressNet: A Neural Ne
 - `demo_data/exp.part01-04.rar`: Compressed RNA-seq demo dataset. This includes breast tissue RNA-seq expression data (TPM) for all protein-coding genes across cancer samples, adjacent noncancerous tissues, and normal tissues, compiled from TCGA and GTEx. Please unzip the files before use.
 - `demo_data/sample.info.csv`: Sample metadata corresponding to the demo expression dataset.
   
+# 2. Dependencies
+- R == 4.4.3
+- GSVA == 2.0.7
+- Python == 3.13.2
+- numpy == 2.1.3
+- torch == 2.6.0
+- scikit-learn == 1.6.1
+- pandas == 2.2.3
