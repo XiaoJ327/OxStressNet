@@ -17,9 +17,9 @@ This repository contains the source code for the paper "OxStressNet: A Neural Ne
 - `demo_data/exp.part01-04.rar`: Compressed RNA-seq demo dataset. This includes breast tissue RNA-seq expression data (TPM) for all protein-coding genes across cancer samples, adjacent noncancerous tissues, and normal tissues, compiled from TCGA and GTEx. Please unzip the files before use.
 - `demo_data/sample.info.csv`: Sample metadata corresponding to the demo expression dataset.
 
-- `demo_data/O.xlsx`: marker genes for ROS production.
-- `demo_data/R.xlsx`: marker genes for antioxidant response.
-- `demo_data/OS.xlsx`: marker genes for oxidative stress response and cellular damage.
+- `demo_data/O.xlsx`: Marker genes for ROS production.
+- `demo_data/R.xlsx`: Marker genes for antioxidant response.
+- `demo_data/OS.xlsx`: Marker genes for oxidative stress response and cellular damage.
   
 # 2. Dependencies
 - R == 4.4.3
